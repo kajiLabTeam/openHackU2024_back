@@ -189,15 +189,16 @@ def get_group(passphrase):
 
 if __name__ == "__main__":
     # 情報の登録
-    # status = regist_data(natuki_data, "natuki", natuki)
-    # print("natuki : " + status)
-    # status = regist_data(masaki_data, "masaki", masaki)
+    # data = [["夜に溺れる","YOASOBI"],["Click","ME:I"]]
+    # status = regist_data(data, "natuki", '123456789')
+    # print("natuki : " + str(status))
+    # status = regist_data(data, "masaki", masaki)
     # print("masaki : " + status)
-    # status = regist_data(ishii_data, "ishii", ishii)
+    # status = regist_data(data, "ishii", ishii)
     # print("ishii : " + status)
-    # status = regist_data(gomamoto_data, "gomamoto", gomamoto)
+    # status = regist_data(data, "gomamoto", gomamoto)
     # print("gomamoto : " + status)
-    # status = regist_data(mizutani_data, "mizutani", mizutani)
+    # status = regist_data(data, "mizutani", mizutani)
     # print("mizutani : " + status)
 
     # グループの作成
@@ -218,8 +219,8 @@ if __name__ == "__main__":
     # print("natuki : " + str(status))
 
     # グループの情報を取得
-    status = get_group("とめぇぃとぉ")
-    for i in status["display_names"]:
-        print(i)
-    for i in status["song_data"]:
-        print(i)
+    # status = get_group("とめぇぃとぉ")
+    # for i in status["display_names"]:
+    #     print(i)
+    # for i in status["song_data"]:
+    #     print(i)
