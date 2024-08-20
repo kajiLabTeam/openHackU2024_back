@@ -11,23 +11,11 @@ app.config["JSON_AS_ASCII"] = False
 def index():
     return render_template("index.html")
 
-
-
-@app.route('/api/test')
-def test():
-    
-    # data = request.get_json()
-    print("aaaaaa")
-
-    return "aaaa"
-
-
 #アカウント連携ページ
 # 受け取ったjsonデータからプレイリストを取得
 # データベース登録関数へデータを渡す
 @app.route('/api/account/align', methods=['POST'])
 def account_align():
-    
     data = request.get_json()
 
     spotify_data = [["夜に溺れる","YOASOBI"],["Click","ME:I"]]
@@ -44,7 +32,6 @@ def room_access():
     with open('./json/room_get.json','r', encoding="utf-8") as f:
         user_datas = json.load(f)
     data = request.get_json()
- 
 
     passphrase=data.get("pass")
     display_name=data.get("display_name")
@@ -53,8 +40,6 @@ def room_access():
     print(passphrase,display_name,user_id)
     print("---------------------------------")
     return database.get_member(passphrase,display_name,user_id)
-
-
 
 #グループへ参加
 @app.route('/api/room/join', methods=['POST'])
@@ -68,13 +53,13 @@ def room_join():
     print(passphrase,display_name,user_id)
 
     return database.join_group(passphrase,display_name,user_id)
+
 #共通していた楽曲の表示
 @app.route('/api/room/get', methods=['POST'])
 def room_get():
     data = json.loads(request.data.decode('utf-8'))["request"]#デコード
     passphrase=data["pass"]
     print(passphrase)
-    # print(request.data.decode('utf-8'))
     return database.get_group(passphrase)
 
 if __name__ == "__main__":
