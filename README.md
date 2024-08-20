@@ -7,7 +7,7 @@
 ### データベースの構築
 MySQLのプロンプト上で"init_db.sql"を実行する。
 <pre>
-mysql> source ~/openHackU2024_back/db_init/init_db.sql;
+mysql> source /openHackU2024_back/db_init/init_db.sql;
 </pre>
 以下のデータベースとテーブルが自動で作成される。
 <pre>
