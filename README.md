@@ -5,7 +5,7 @@
 
 ## 事前準備
 ### データベースの構築
-MySQLのプロンプト上で"init_db.sql"を実行する。
+MySQLのプロンプト上で"init.sql"を実行する。
 <pre>
 mysql> source ./db_init/init.sql;
 </pre>
