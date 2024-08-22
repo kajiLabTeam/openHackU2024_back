@@ -7,6 +7,9 @@ app = Flask(__name__)
 CORS(app)
 app.config["JSON_AS_ASCII"] = False
 
+#アカウント連携ページ
+# 受け取ったjsonデータからプレイリストを取得
+# データベース登録関数へデータを渡す
 @app.route('/api/account/align', methods=['POST'])
 def account_align():
     data = request.get_json()
