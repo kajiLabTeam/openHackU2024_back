@@ -7,10 +7,6 @@ app = Flask(__name__)
 CORS(app)
 app.config["JSON_AS_ASCII"] = False
 
-@app.route('/')
-def index():
-    return render_template("index.html")
-
 #アカウント連携ページ
 # 受け取ったjsonデータからプレイリストを取得
 # データベース登録関数へデータを渡す
