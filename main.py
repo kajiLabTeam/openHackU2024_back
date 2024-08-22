@@ -13,10 +13,25 @@ app.config["JSON_AS_ASCII"] = False
 @app.route('/api/account/align', methods=['POST'])
 def account_align():
     data = request.get_json()
-    spotify_data = [["夜に溺れる","YOASOBI"],["Click","ME:I"]]
+    # キーを取得
+    keys = data["spotify_data"].keys()
+    playlist_count = len(data["spotify_data"])
+
+    songAndArtist=[]
+
+    for i in keys:
+        playlists = data["spotify_data"][i]
+        for playlist in playlists:
+            song=playlist["song"]
+            artist=playlist["artist"]
+
+            songAndArtist.append([song,artist])
+
+    spotify_data = songAndArtist
     display_name = data.get("display_name")
     user_id = data.get("user_id")
 
+    print(songAndArtist)
     print(spotify_data,display_name,user_id)
     return database.regist_data(spotify_data,display_name,user_id)
 
