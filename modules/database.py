@@ -188,8 +188,26 @@ def get_group(passphrase):
         return json.loads('{"status": "error", "error": "' + str(e) + '"}')
 
 #データベースから生データを取得
-def get_rawdata():
-    pass
+def get_rawdata(table="user_tb", where="", sql = ""):
+    conn, cursor = connect_database()
+
+    # SQL文
+    if sql != "":
+        pass
+    elif where != "":
+        sql = "SELECT * FROM `" + table + "` WHERE " + where + ";"
+    else:
+        sql = "SELECT * FROM `" + table + "`;"
+
+    # SQL文を実行
+    cursor.execute(sql)
+    rawdata = cursor.fetchall()
+
+    # 接続を閉じる
+    cursor.close()
+    conn.close()
+
+    return rawdata
 
 if __name__ == "__main__":
     pass
