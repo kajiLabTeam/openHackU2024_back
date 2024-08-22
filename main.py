@@ -38,37 +38,31 @@ def account_align():
 #合言葉を打ってグループを作成・参加確認
 @app.route('/api/room/access', methods=['POST'])
 def room_access():
-    print("room_access")
-    with open('./json/room_get.json','r', encoding="utf-8") as f:
-        user_datas = json.load(f)
     data = request.get_json()
-
     passphrase=data.get("pass")
     display_name=data.get("display_name")
     user_id=data.get("user_id")
 
     print(passphrase,display_name,user_id)
-    print("---------------------------------")
     return database.get_member(passphrase,display_name,user_id)
 
 #グループへ参加
 @app.route('/api/room/join', methods=['POST'])
 def room_join():
-
     data = request.get_json()
     passphrase=data.get("pass")
     display_name=data.get("display_name")
     user_id=data.get("user_id")
 
     print(passphrase,display_name,user_id)
-
     return database.join_group(passphrase,display_name,user_id)
 
 #共通していた楽曲の表示
 @app.route('/api/room/get', methods=['POST'])
 def room_get():
-    data = json.loads(request.data.decode('utf-8'))["request"]#デコード
-    passphrase=data["pass"]
+    data = request.get_json()
+    passphrase=data.get("pass")
+
     print(passphrase)
     return database.get_group(passphrase)
 
