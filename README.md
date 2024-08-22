@@ -4,7 +4,7 @@
 [openHackU2024_front](https://github.com/kajiLabTeam/openHackU2024_front)からのリクエストを処理するAPIサーバー。  
 POSTで送られてきた情報をデータベースへ登録し、ユーザー・グループ・曲データの管理を行う。
 
-## 事前準備
+## 環境構築
 ### データベースの構築
 MySQLのプロンプト上で"init.sql"を実行する。
 <pre>
