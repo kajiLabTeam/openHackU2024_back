@@ -28,7 +28,7 @@ def regist_data(spotify_data, display_name, user_id):
         cursor.close()
         conn.close()
 
-        return json.loads('{"status": "success or error"}')
+        return json.loads('{"status": "success"}')
 
     except Exception as e:
         return json.loads('{"status": "error", "error": "' + str(e) + '"}')
