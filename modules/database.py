@@ -8,9 +8,8 @@ def connect_database():
         password="kaji2024",
         database="tomato_db"
     )
-    # カーソルを取得
-    cursor = conn.cursor()
-    return conn, cursor
+
+    return conn, conn.cursor()
 
 # データを登録
 def regist_data(spotify_data, display_name, user_id):
@@ -200,8 +199,11 @@ def get_rawdata(table="user_tb", where="", sql = ""):
         sql = "SELECT * FROM `" + table + "`;"
 
     # SQL文を実行
-    cursor.execute(sql)
-    rawdata = cursor.fetchall()
+    try:
+        cursor.execute(sql)
+        rawdata = cursor.fetchall()
+    except Exception as e:
+        rawdata = [('error', e)]
 
     # 接続を閉じる
     cursor.close()
