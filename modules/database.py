@@ -12,7 +12,7 @@ def connect_database():
     return conn, conn.cursor()
 
 # データを登録
-def regist_data(spotify_data, display_name, user_id):
+def regist_data(spotify_data:list, display_name:str, user_id:str):
     try:
         conn, cursor = connect_database()
 
@@ -33,7 +33,7 @@ def regist_data(spotify_data, display_name, user_id):
         return json.loads('{"status": "error", "error": "' + str(e) + '"}')
 
 # グループに参加しているメンバーを取得
-def get_member(passphrase, display_name, user_id):
+def get_member(passphrase:str, display_name:str, user_id:str):
     try:
         conn, cursor = connect_database()
 
@@ -98,7 +98,7 @@ def get_member(passphrase, display_name, user_id):
         return json.loads('{"status": "error", "error": "' + str(e) + '"}')
 
 # グループへの参加
-def join_group(passphrase, display_name, user_id):
+def join_group(passphrase:str, display_name:str, user_id:str):
     try:
         conn, cursor = connect_database()
 
@@ -130,7 +130,7 @@ def join_group(passphrase, display_name, user_id):
         return json.loads('{"status": "error", "error": "' + str(e) + '"}')
 
 # グループの情報を取得
-def get_group(passphrase):
+def get_group(passphrase:str):
     try:
         conn, cursor = connect_database()
 
@@ -187,7 +187,7 @@ def get_group(passphrase):
         return json.loads('{"status": "error", "error": "' + str(e) + '"}')
 
 #データベースから生データを取得
-def get_rawdata(table="user_tb", where="", sql = ""):
+def get_rawdata(table:str="user_tb", where:str="", sql:str=""):
     conn, cursor = connect_database()
 
     # SQL文
