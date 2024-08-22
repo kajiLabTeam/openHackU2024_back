@@ -17,11 +17,21 @@ def index():
 @app.route('/api/account/align', methods=['POST'])
 def account_align():
     data = request.get_json()
+    
+    #playlist = data()"playlist1"
+    playlist = data["spotify_data"]["playlist1"]
+    # song = data["spotify_data"]["playlist1"]["song"]
+    # artist = data["spotify_data"]["playlist1"]["artist"]
+    # songArtist = [song,artist]
+
+
 
     spotify_data = [["夜に溺れる","YOASOBI"],["Click","ME:I"]]
     display_name = data.get("display_name")
     user_id = data.get("user_id")
     print(spotify_data,display_name,user_id)
+    print("-----------------------------------------------------")
+    print(playlist)
 
     return database.regist_data(spotify_data,display_name,user_id)
 
