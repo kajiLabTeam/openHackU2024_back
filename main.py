@@ -17,12 +17,30 @@ def index():
 @app.route('/api/account/align', methods=['POST'])
 def account_align():
     data = request.get_json()
+    # キーを取得
+    keys = data["spotify_data"].keys()
+    
+    playlist_count = len(data["spotify_data"])
+    
 
-    spotify_data = [["夜に溺れる","YOASOBI"],["Click","ME:I"]]
+    songAndArtist=[]
+
+    for i in keys:
+
+        playlists = data["spotify_data"][i]
+        for playlist in playlists:
+            song=playlist["song"]
+            artist=playlist["artist"]
+            
+            songAndArtist.append([song,artist])
+
+    print(songAndArtist)     
+
+    spotify_data = songAndArtist
     display_name = data.get("display_name")
     user_id = data.get("user_id")
     print(spotify_data,display_name,user_id)
-
+   
     return database.regist_data(spotify_data,display_name,user_id)
 
 #合言葉を打ってグループを作成・参加確認

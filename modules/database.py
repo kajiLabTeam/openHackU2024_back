@@ -188,36 +188,37 @@ def get_group(passphrase):
         return json.loads('{"status": "error", "error": "' + str(e) + '"}')
 
 if __name__ == "__main__":
-    # 情報の登録
-    # status = regist_data(natuki_data, "natuki", natuki)
-    # print("natuki : " + status)
-    # status = regist_data(masaki_data, "masaki", masaki)
-    # print("masaki : " + status)
-    # status = regist_data(ishii_data, "ishii", ishii)
-    # print("ishii : " + status)
-    # status = regist_data(gomamoto_data, "gomamoto", gomamoto)
-    # print("gomamoto : " + status)
-    # status = regist_data(mizutani_data, "mizutani", mizutani)
-    # print("mizutani : " + status)
+    #情報の登録
+    data = [["夜に溺れる","YOASOBI"],["Click","ME:I"]]
+    status = regist_data(data, "natuki", '123456789')
+    print("natuki : " + str(status))
+    status = regist_data(data, "masaki", masaki)
+    print("masaki : " + status)
+    status = regist_data(data, "ishii", ishii)
+    print("ishii : " + status)
+    status = regist_data(data, "gomamoto", gomamoto)
+    print("gomamoto : " + status)
+    status = regist_data(data, "mizutani", mizutani)
+    print("mizutani : " + status)
 
-    # グループの作成
-    # status = get_member("とめぇぃとぉ", "masaki", masaki)
-    # print("masaki : " + status)
+    #グループの作成
+    status = get_member("とめぇぃとぉ", "masaki", masaki)
+    print("masaki : " + status)
 
-    # グループに参加
-    # status = join_group("とめぇぃとぉ", "ishii", ishii)
-    # print("ishii : " + status)
-    # status = join_group("とめぇぃとぉ", "gomamoto", gomamoto)
-    # print("gomamoto : " + status)
-    # status = join_group("とめぇぃとぉ", "mizutani", mizutani)
-    # print("mizutani : " + status)
+    #グループに参加
+    status = join_group("とめぇぃとぉ", "ishii", ishii)
+    print("ishii : " + status)
+    status = join_group("とめぇぃとぉ", "gomamoto", gomamoto)
+    print("gomamoto : " + status)
+    status = join_group("とめぇぃとぉ", "mizutani", mizutani)
+    print("mizutani : " + status)
 
 
-    # グループに参加しているメンバーの取得
-    # status = get_member("とめぇぃとぉ", "natuki", natuki)
-    # print("natuki : " + str(status))
+    #グループに参加しているメンバーの取得
+    status = get_member("とめぇぃとぉ", "natuki", natuki)
+    print("natuki : " + str(status))
 
-    # グループの情報を取得
+    #グループの情報を取得
     status = get_group("とめぇぃとぉ")
     for i in status["display_names"]:
         print(i)
