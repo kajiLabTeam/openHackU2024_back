@@ -1,7 +1,8 @@
 # openHackU2024_BACKEND
 
 ## 概要
-まだかいてない
+[openHackU2024_front](https://github.com/kajiLabTeam/openHackU2024_front)からのリクエストを処理するAPIサーバー。  
+POSTで送られてきた情報をデータベースへ登録し、ユーザー・グループ・曲データの管理を行う。
 
 ## 事前準備
 ### データベースの構築
