@@ -187,5 +187,9 @@ def get_group(passphrase):
     except Exception as e:
         return json.loads('{"status": "error", "error": "' + str(e) + '"}')
 
+#データベースから生データを取得
+def get_rawdata():
+    pass
+
 if __name__ == "__main__":
     pass
