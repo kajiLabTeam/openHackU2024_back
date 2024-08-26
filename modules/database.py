@@ -111,6 +111,7 @@ def join_group(passphrase:str, display_name:str, user_id:str):
 
         # グループが存在しない場合エラーを返す
         if len(group_id) == 0: json.loads('{"status": "error", "error": "group not found"}')
+
         group_id = group_id[0][0]
 
         # SQL文 ユーザーのグループIDの更新
@@ -152,9 +153,13 @@ def get_group(passphrase:str):
         cursor.execute(sql, sql_data)
         user_datas = cursor.fetchall()
 
+
+
         # 曲データの取得・合計
         song_datas = []
         song_overlaps = []
+
+
         for user_data in user_datas:
             for song_data in eval(user_data[3]):
                 if song_data not in song_datas:
@@ -163,24 +168,36 @@ def get_group(passphrase:str):
                 else:
                     song_overlaps[song_datas.index(song_data)] += 1
 
+
         # 二つのリストの長さが同じでなかった場合エラーを返す
         if len(song_datas) != len(song_overlaps): return json.loads('{"status": "error", "error": "song data collect exception"}')
 
         # json形式に変換
-        json_text = '{"status": "success", "display_names" : ['
-        for joined_user in user_datas:
-            json_text += '{"display_name" : "' + joined_user[1] + '", ' + '"user_id" : "' + joined_user[2] + '"},'
-        json_text = json_text[:-1]
-        json_text += '], "song_data" : ['
-        for i in range(len(song_datas)):
-            json_text += '{"song_title" : "' + song_datas[i][0] + '", "song_artist" : "' + song_datas[i][1] + '", "overlap" : "' + str(song_overlaps[i]) + '"},'
-        json_text = json_text[:-1]
-        json_text += ']}'
+        # json_text = '{"status": "success", "display_names" : ['
+        # for joined_user in user_datas:
+        #     json_text += '{"display_name" : "' + joined_user[1] + '", ' + '"user_id" : "' + joined_user[2] + '"},'
+        # json_text = json_text[:-1]
+        # json_text += '], "song_data" : ['
+        # for i in range(len(song_datas)):
+        #     json_text += '{"song_title" : "' + song_datas[i][0] + '", "song_artist" : "' + song_datas[i][1] + '", "overlap" : "' + str(song_overlaps[i]) + '"},'
+        # json_text = json_text[:-1]
+        # json_text += ']}'
+        data = {
+            "status": "success",
+            "display_names": [{"display_name": user[1], "user_id": user[2]} for user in user_datas],
+            "song_data": [
+            {"song_title": song[0], "song_artist": song[1], "overlap": str(overlap)}
+            for song, overlap in zip(song_datas, song_overlaps)
+            ]
+        }  
+        json_text = json.dumps(data)
 
         # 接続を閉じる
         cursor.close()
         conn.close()
 
+        print("kokoojson")
+        print(json_text)
         return json.loads(json_text)
 
     except Exception as e:
