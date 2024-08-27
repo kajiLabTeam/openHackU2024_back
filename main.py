@@ -21,18 +21,22 @@ def account_align():
 
     for i in keys:
         playlists = data["spotify_data"][i]
-        for playlist in playlists:
+        for playlist in playlists: 
             song=playlist["song"]
             artist=playlist["artist"]
+            ##同じ曲がすでに存在していたら配列(songAndArtist)に追加しない
+            if [song,artist] not in songAndArtist:
+               songAndArtist.append([song,artist])
+            
 
-            songAndArtist.append([song,artist])
 
     spotify_data = songAndArtist
     display_name = data.get("display_name")
     user_id = data.get("user_id")
 
+    
     print(songAndArtist)
-    print(spotify_data,display_name,user_id)
+    # print(spotify_data,display_name,user_id)
     return database.regist_data(spotify_data,display_name,user_id)
 
 #合言葉を打ってグループを作成・参加確認
@@ -62,6 +66,8 @@ def room_join():
 def room_get():
     data = request.get_json()
     passphrase=data.get("pass")
+
+
 
     print(passphrase)
     return database.get_group(passphrase)
