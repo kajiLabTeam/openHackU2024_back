@@ -26,15 +26,12 @@ def account_align():
             artist=playlist["artist"]
             ##同じ曲がすでに存在していたら配列(songAndArtist)に追加しない
             if [song,artist] not in songAndArtist:
-               songAndArtist.append([song,artist])
-            
-
+                songAndArtist.append([song,artist])
 
     spotify_data = songAndArtist
     display_name = data.get("display_name")
     user_id = data.get("user_id")
 
-    
     print(songAndArtist)
     # print(spotify_data,display_name,user_id)
     return database.regist_data(spotify_data,display_name,user_id)

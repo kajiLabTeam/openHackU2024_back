@@ -189,7 +189,7 @@ def get_group(passphrase:str):
             {"song_title": song[0], "song_artist": song[1], "overlap": str(overlap)}
             for song, overlap in zip(song_datas, song_overlaps)
             ]
-        }  
+        }
         json_text = json.dumps(data)
 
         # 接続を閉じる
